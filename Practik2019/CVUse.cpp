@@ -1,6 +1,3 @@
-﻿// CVUse.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
 #include "pch.h"
 #include <iostream>
 #include "opencv2/opencv.hpp"
@@ -59,17 +56,16 @@
 				 {
 					 
 					 sContourNumber << i;
-					 sObjectNumber = sContourNumber.str();   // Convert int to string
-					 Point pCoordinates(mc[i].x + 3, mc[i].y - 3);   // Text's coordinates (A little bit off from mass center)
+					 sObjectNumber = sContourNumber.str();   
+					 Point pCoordinates(mc[i].x + 3, mc[i].y - 3);  
 					 Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
 					 drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
-					 circle(drawing, mc[i], 4, color, -1, 8, 0);     // Draw mass center
-					 putText(drawing, sObjectNumber, pCoordinates, FONT_HERSHEY_COMPLEX, 1, color, 2, 8); // Write object number
-					 sContourNumber.str("");     // Clear string
-					 sContourNumber.clear();     // Clear any error flags
+					 circle(drawing, mc[i], 4, color, -1, 8, 0);    
+					 putText(drawing, sObjectNumber, pCoordinates, FONT_HERSHEY_COMPLEX, 1, color, 2, 8); 
+					 sContourNumber.str("");    
+					 sContourNumber.clear();    
 
-					 //        imshow("Contours", drawing);
-					 //        waitKey();
+					 
 				 }
 
 				 
@@ -77,6 +73,8 @@
 				 imshow("Canny",cannyOut);
 				 imshow("Contours", drawing);
 
+				 imwrite("Result.jpg",drawing);
+				 
 				 waitKey(0);
 				 return(0);
 			 }
